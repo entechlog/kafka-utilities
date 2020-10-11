@@ -3,6 +3,11 @@ FROM python:3
 COPY . /usr/src/
 WORKDIR /usr/src/
 
+# un-comment only if the confluent-kafka install fails
+#RUN git clone https://github.com/edenhill/librdkafka.git
+#RUN pwd
+#RUN cd /usr/src/librdkafka/ && ./configure --install-deps && make && make install && ldconfig
+
 COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
