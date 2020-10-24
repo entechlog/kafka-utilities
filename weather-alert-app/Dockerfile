@@ -24,6 +24,7 @@ COPY . .
 
 ENV bootstrap_servers localhost:9092
 ENV topic_name weather.alert.app.source 
-ENV input_location Marthandam,IN
+ENV lat 38.883530
+ENV lon -94.818240
 
-CMD ["sh", "-c", "python /usr/src/app/weather-alert-app.py --bootstrap_servers $bootstrap_servers --topic_name $topic_name --input_location $input_location"]
+CMD ["sh", "-c", "python /usr/src/app/weather-alert-app.py --bootstrap_servers $bootstrap_servers --topic_name $topic_name --lat $lat --lon $lon"]
