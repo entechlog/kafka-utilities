@@ -2,3 +2,5 @@ confluent-kafka
 requests
 avro-python3
 fastavro
+docker
+

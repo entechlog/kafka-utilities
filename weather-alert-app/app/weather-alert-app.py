@@ -22,11 +22,6 @@ import socket
 
 import schemas
 
-"""
-https://github.com/confluentinc/examples/blob/6.0.0-post/clients/cloud/python/producer_ccsr.py
-https://github.com/filipovskid/DRBoson/
-"""
-
 def header_footer(process):
     # Display the program start time
     print('-' * 40)
