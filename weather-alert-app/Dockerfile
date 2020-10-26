@@ -22,10 +22,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-#ENV bootstrap_servers localhost:9092
-#ENV topic_name weather.alert.app.source
-#ENV schema_registry_url localhost:8081
-#ENV lat 38.883530
-#ENV lon -94.818240
+ENV bootstrap_servers localhost:9092
+ENV topic_name weather.alert.app.source
+ENV schema_registry_url localhost:8081
+ENV lat 38.883530
+ENV lon -94.818240
 
-#CMD ["sh", "-c", "python /usr/src/app/weather-alert-app.py --bootstrap_servers $bootstrap_servers --topic_name $topic_name --schema_registry_url $schema_registry_url --lat $lat --lon $lon"]
+CMD ["sh", "-c", "python /usr/src/app/weather-alert-app.py --bootstrap_servers $bootstrap_servers --topic_name $topic_name --schema_registry_url $schema_registry_url --lat $lat --lon $lon"]
