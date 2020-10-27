@@ -1,0 +1,11 @@
+{
+  "name": "WEATHER_ALERT_TELEGRAM_SINK",
+  "config": {
+    "connector.class": "com.github.fbascheper.kafka.connect.telegram.TelegramSinkConnector",
+    "topics": "TBL_WEATHER_ALERT_APP_0020_RAIN_IS_HERE",
+    "telegram.bot.name": "${file:/opt/confluent/secrets/connect-secrets.properties:telegram-bot-name}",
+    "telegram.bot.username": "${file:/opt/confluent/secrets/connect-secrets.properties:telegram-bot-username}",
+    "telegram.bot.api.key": "${file:/opt/confluent/secrets/connect-secrets.properties:telegram-bot-api-key}",
+    "telegram.bot.destination.chat.id": "${file:/opt/confluent/secrets/connect-secrets.properties:telegram-bot-destination-chat-id}"
+  }
+}

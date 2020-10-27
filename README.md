@@ -8,6 +8,8 @@ https://www.confluent.io/blog/build-streaming-etl-solutions-with-kafka-and-rail-
 
 https://github.com/confluentinc/demo-scene/tree/master/rail-data-streaming-pipeline
 
+https://github.com/confluentinc/demo-scene/tree/master/ksqldb-twitter
+
 ```
 docker build --tag entechlog/weather-alert-app .
 
@@ -33,4 +35,15 @@ schema_registry_url=http://192.168.1.8:8081 -e topic_name=weather.alert.app.sour
 curl -s -X POST https://api.telegram.org/bot<BOT ACCESS TOKEN>/sendMessage \
     -d chat_id=<CHAT ID>\
     -d text="Its raining now !!!"
+```
+
+- You can ssh into your docker by running
+```
+docker exec -t -i weather-alert-app /bin/bash
+```
+
+- Produce data by running
+```
+python weather-alert-app.py --bootstrap_servers=broker:9092 --topic_name=weather.alert.app.source --schema_registry_u
+rl=http://schema-registry:8081 --lat=8.28 --lon=77.18
 ```
