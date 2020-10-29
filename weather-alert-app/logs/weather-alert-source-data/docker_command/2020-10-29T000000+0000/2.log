@@ -1,0 +1,23 @@
+[2020-10-29 04:21:20,514] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: weather-alert-source-data.docker_command 2020-10-29T00:00:00+00:00 [queued]>
+[2020-10-29 04:21:20,580] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: weather-alert-source-data.docker_command 2020-10-29T00:00:00+00:00 [queued]>
+[2020-10-29 04:21:20,589] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2020-10-29 04:21:20,590] {taskinstance.py:881} INFO - Starting attempt 2 of 2
+[2020-10-29 04:21:20,590] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2020-10-29 04:21:20,608] {taskinstance.py:901} INFO - Executing <Task(DockerOperator): docker_command> on 2020-10-29T00:00:00+00:00
+[2020-10-29 04:21:20,612] {standard_task_runner.py:54} INFO - Started process 1757 to run task
+[2020-10-29 04:21:20,672] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'weather-alert-source-data', 'docker_command', '2020-10-29T00:00:00+00:00', '--job_id', '15', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/weather-alert-dag.py', '--cfg_path', '/tmp/tmpzotmlzk3']
+[2020-10-29 04:21:20,677] {standard_task_runner.py:78} INFO - Job 15: Subtask docker_command
+[2020-10-29 04:21:20,780] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: weather-alert-source-data.docker_command 2020-10-29T00:00:00+00:00 [running]> 37c7ce38cfab
+[2020-10-29 04:21:20,831] {taskinstance.py:1150} ERROR - load_config() got an unexpected keyword argument 'config_dict'
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 984, in _run_raw_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/docker_operator.py", line 263, in execute
+    tls=tls_config
+  File "/usr/local/lib/python3.6/site-packages/docker/api/client.py", line 126, in __init__
+    config_dict=self._general_configs, credstore_env=credstore_env,
+TypeError: load_config() got an unexpected keyword argument 'config_dict'
+[2020-10-29 04:21:20,832] {taskinstance.py:1194} INFO - Marking task as FAILED. dag_id=weather-alert-source-data, task_id=docker_command, execution_date=20201029T000000, start_date=20201029T042120, end_date=20201029T042120
+[2020-10-29 04:21:25,527] {local_task_job.py:102} INFO - Task exited with return code 1

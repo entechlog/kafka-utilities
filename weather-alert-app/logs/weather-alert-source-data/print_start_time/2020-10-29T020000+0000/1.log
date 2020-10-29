@@ -1,0 +1,42 @@
+[2020-10-29 03:35:05,199] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: weather-alert-source-data.print_start_time 2020-10-29T02:00:00+00:00 [queued]>
+[2020-10-29 03:35:05,259] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: weather-alert-source-data.print_start_time 2020-10-29T02:00:00+00:00 [queued]>
+[2020-10-29 03:35:05,260] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2020-10-29 03:35:05,260] {taskinstance.py:881} INFO - Starting attempt 1 of 2
+[2020-10-29 03:35:05,260] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2020-10-29 03:35:05,294] {taskinstance.py:901} INFO - Executing <Task(BashOperator): print_start_time> on 2020-10-29T02:00:00+00:00
+[2020-10-29 03:35:05,302] {standard_task_runner.py:54} INFO - Started process 178 to run task
+[2020-10-29 03:35:05,443] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'weather-alert-source-data', 'print_start_time', '2020-10-29T02:00:00+00:00', '--job_id', '11', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/weather-alert-dag.py', '--cfg_path', '/tmp/tmpati9vekq']
+[2020-10-29 03:35:05,468] {standard_task_runner.py:78} INFO - Job 11: Subtask print_start_time
+[2020-10-29 03:35:05,655] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: weather-alert-source-data.print_start_time 2020-10-29T02:00:00+00:00 [running]> 8211a1e74de5
+[2020-10-29 03:35:05,714] {bash_operator.py:113} INFO - Tmp dir root location: 
+ /tmp
+[2020-10-29 03:35:05,720] {bash_operator.py:136} INFO - Temporary script location: /tmp/airflowtmpxiu2bq5e/print_start_time5rs68_bm
+[2020-10-29 03:35:05,720] {bash_operator.py:146} INFO - Running command: echo `date "+%Y-%m-%d%H:%M:%S"` "- Airflow Task Started"
+[2020-10-29 03:35:05,733] {bash_operator.py:153} INFO - Output:
+[2020-10-29 03:35:05,742] {bash_operator.py:157} INFO - 2020-10-2903:35:05 - Airflow Task Started
+[2020-10-29 03:35:05,743] {bash_operator.py:161} INFO - Command exited with return code 0
+[2020-10-29 03:35:05,830] {taskinstance.py:1070} INFO - Marking task as SUCCESS.dag_id=weather-alert-source-data, task_id=print_start_time, execution_date=20201029T020000, start_date=20201029T033505, end_date=20201029T033505
+[2020-10-29 03:35:10,155] {local_task_job.py:102} INFO - Task exited with return code 0
+[2020-10-29 04:16:24,780] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: weather-alert-source-data.print_start_time 2020-10-29T02:00:00+00:00 [queued]>
+[2020-10-29 04:16:24,941] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: weather-alert-source-data.print_start_time 2020-10-29T02:00:00+00:00 [queued]>
+[2020-10-29 04:16:24,949] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2020-10-29 04:16:24,957] {taskinstance.py:881} INFO - Starting attempt 1 of 2
+[2020-10-29 04:16:24,959] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2020-10-29 04:16:25,098] {taskinstance.py:901} INFO - Executing <Task(BashOperator): print_start_time> on 2020-10-29T02:00:00+00:00
+[2020-10-29 04:16:25,113] {standard_task_runner.py:54} INFO - Started process 461 to run task
+[2020-10-29 04:16:26,103] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'weather-alert-source-data', 'print_start_time', '2020-10-29T02:00:00+00:00', '--job_id', '8', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/weather-alert-dag.py', '--cfg_path', '/tmp/tmp7p52f101']
+[2020-10-29 04:16:26,133] {standard_task_runner.py:78} INFO - Job 8: Subtask print_start_time
+[2020-10-29 04:16:26,439] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: weather-alert-source-data.print_start_time 2020-10-29T02:00:00+00:00 [running]> 37c7ce38cfab
+[2020-10-29 04:16:26,669] {bash_operator.py:113} INFO - Tmp dir root location: 
+ /tmp
+[2020-10-29 04:16:26,679] {bash_operator.py:136} INFO - Temporary script location: /tmp/airflowtmp7o2rxj9l/print_start_timef0ap96xr
+[2020-10-29 04:16:26,685] {bash_operator.py:146} INFO - Running command: echo `date "+%Y-%m-%d%H:%M:%S"` "- Airflow Task Started"
+[2020-10-29 04:16:26,729] {bash_operator.py:153} INFO - Output:
+[2020-10-29 04:16:26,763] {bash_operator.py:157} INFO - 2020-10-2904:16:26 - Airflow Task Started
+[2020-10-29 04:16:26,766] {bash_operator.py:161} INFO - Command exited with return code 0
+[2020-10-29 04:16:26,847] {taskinstance.py:1070} INFO - Marking task as SUCCESS.dag_id=weather-alert-source-data, task_id=print_start_time, execution_date=20201029T020000, start_date=20201029T041624, end_date=20201029T041626
+[2020-10-29 04:16:29,374] {local_task_job.py:102} INFO - Task exited with return code 0

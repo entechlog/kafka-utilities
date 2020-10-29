@@ -47,3 +47,20 @@ docker exec -t -i weather-alert-app /bin/bash
 python weather-alert-app.py --bootstrap_servers=broker:9092 --topic_name=weather.alert.app.source --schema_registry_u
 rl=http://schema-registry:8081 --lat=8.28 --lon=77.18
 ```
+
+- Error and Solution 
+```
+2020-10-27 17:28:19.757 UTC [1] DETAIL:  The data directory was initialized by PostgreSQL version 9.6, which is not compatible with this version 13.0
+
+docker ps -a
+
+docker inspect -f '{{ .Mounts }}' <container-id>
+
+docker volume ls
+
+docker volume rm <volume-name>
+
+docker-compose down --volumes
+
+```
+

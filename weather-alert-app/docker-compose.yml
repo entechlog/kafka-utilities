@@ -58,7 +58,8 @@ services:
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
       KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
-      KSQL_KSQL_QUERIES_FILE: /opt/queries/queries.sql
+      # Uncomment/Comment based on deployment needs (head/headless)
+      # KSQL_KSQL_QUERIES_FILE: /opt/queries/queries.sql
       KSQL_KSQL_SERVICE_ID: ${KSQL_KSQL_SERVICE_ID}
     restart: unless-stopped
 
@@ -155,46 +156,72 @@ services:
         while [ 1 -eq 1 ];do sleep 60;done
 
   airflow-postgres:
-      image: postgres:9.6
-      container_name: airflow-postgres
-      environment:
-          - POSTGRES_USER=airflow
-          - POSTGRES_PASSWORD=airflow
-          - POSTGRES_DB=airflow
-      logging:
-          options:
-              max-size: 10m
-              max-file: "3"
-
+    image: postgres:${POSTGRES_VERSION_TAG}
+    container_name: airflow-postgres
+    environment:
+        - POSTGRES_USER=airflow
+        - POSTGRES_PASSWORD=airflow
+        - POSTGRES_DB=airflow
+    logging:
+        options:
+            max-size: 10m
+            max-file: "3"
+            
+  airflow-initdb:
+    image: apache/airflow:${AIRFLOW_VERSION_TAG}
+    container_name: airflow-initdb
+    entrypoint: airflow upgradedb
+    depends_on:
+      - airflow-postgres
+    env_file:
+      - ./docker/airflow/.env
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+  
+  airflow-scheduler:
+    image: entechlog/airflow:${AIRFLOW_VERSION_TAG}
+    container_name: airflow-scheduler
+    build:
+      context: ./docker/airflow/
+      args:
+        AIRFLOW_VERSION_TAG: ${AIRFLOW_VERSION_TAG}
+    entrypoint: airflow scheduler
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - airflow-postgres
+      - airflow-initdb
+    env_file:
+      - ./docker/airflow/.env
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+ 
   airflow-webserver:
-      image: puckel/docker-airflow:1.10.9
-      container_name: airflow-webserver
-      restart: always
-      depends_on:
-          - airflow-postgres
-      environment:
-          - LOAD_EX=n
-          - EXECUTOR=Local
-      logging:
-          options:
-              max-size: 10m
-              max-file: "3"
-      volumes:
-          - ./dags:/usr/local/airflow/dags
-          - ./requirements.txt:/requirements.txt
-      ports:
-          - "8080:8080"
-      command: webserver
-      healthcheck:
-          test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
-          interval: 30s
-          timeout: 30s
-          retries: 3
+    image: apache/airflow:${AIRFLOW_VERSION_TAG}
+    container_name: airflow-webserver
+    entrypoint: airflow webserver
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - airflow-postgres
+      - airflow-initdb
+      - airflow-scheduler
+    env_file:
+      - ./docker/airflow/.env
+    volumes:
+       - ./dags:/opt/airflow/dags
+       - ./logs:/opt/airflow/logs
+    ports:
+      - "8080:8080"
 
   weather-alert-app:
     image: entechlog/weather-alert-app
     container_name: weather-alert-app
-    build: ./
+    build: ./docker/app/
     command: 
       - bash 
       - -c 
@@ -202,3 +229,4 @@ services:
         echo "Launching weather-alert-app"
         #
         sleep infinity
+        

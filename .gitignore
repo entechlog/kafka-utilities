@@ -1,1 +1,2 @@
-weather-alert-app\dags\__pycache__
+/dags/__pycache__
+/logs
