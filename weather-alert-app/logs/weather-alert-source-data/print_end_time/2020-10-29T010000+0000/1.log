@@ -1,2 +1,0 @@
-[2020-10-29 04:16:43,982] {taskinstance.py:664} INFO - Dependencies not met for <TaskInstance: weather-alert-source-data.print_end_time 2020-10-29T01:00:00+00:00 [queued]>, dependency 'Trigger Rule' FAILED: Task's trigger rule 'all_success' requires all upstream tasks to have succeeded, but found 1 non-success(es). upstream_tasks_state={'total': 1, 'successes': 0, 'skipped': 0, 'failed': 0, 'upstream_failed': 0, 'done': 0}, upstream_task_ids={'docker_command'}
-[2020-10-29 04:16:44,036] {local_task_job.py:90} INFO - Task is not able to be run
