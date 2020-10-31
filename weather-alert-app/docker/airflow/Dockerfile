@@ -16,4 +16,9 @@ RUN apt-get update \
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Create empty file for docker.sock to set required owner and group
+# RUN touch /var/run/docker.sock
+# RUN chown airflow:airflow /var/run/docker.sock
+# VOLUME /var/run/docker.sock
+
 USER airflow

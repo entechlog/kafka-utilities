@@ -64,3 +64,6 @@ docker-compose down --volumes
 
 ```
 
+
+docker-compose up --remove-orphans -d --build
+

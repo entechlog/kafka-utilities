@@ -28,4 +28,4 @@ ENV schema_registry_url localhost:8081
 ENV lat 38.883530
 ENV lon -94.818240
 
-CMD ["sh", "-c", "python /usr/src/app/weather-alert-app.py --bootstrap_servers $bootstrap_servers --topic_name $topic_name --schema_registry_url $schema_registry_url --lat $lat --lon $lon"]
+CMD ["sh", "-c", "python /usr/src/weather-alert-app.py --bootstrap_servers $bootstrap_servers --topic_name $topic_name --schema_registry_url $schema_registry_url --lat $lat --lon $lon"]

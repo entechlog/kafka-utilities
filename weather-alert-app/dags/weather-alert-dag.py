@@ -15,7 +15,7 @@ default_args = {
         'schedule_interval'     : '@hourly'
 }
 
-with DAG('weather-alert-source-data', default_args=default_args, schedule_interval='@hourly', catchup=True) as dag:
+with DAG('weather-alert-source-data', default_args=default_args, schedule_interval='@hourly', catchup=False) as dag:
         
         t1 = BashOperator(
                 task_id='print_start_time',
@@ -31,7 +31,7 @@ with DAG('weather-alert-source-data', default_args=default_args, schedule_interv
                 docker_url="unix://var/run/docker.sock",
                 network_mode="bridge"
         )
-
+        
         t3 = BashOperator(
                 task_id='print_end_time',
                 bash_command='echo `date "+%Y-%m-%d%H:%M:%S"` "- Airflow Task Finished"'

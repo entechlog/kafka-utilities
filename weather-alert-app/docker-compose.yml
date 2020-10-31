@@ -1,5 +1,5 @@
 ---
-version: '2'
+version: '3'
 
 services:
   zookeeper:
@@ -176,10 +176,11 @@ services:
     env_file:
       - ./docker/airflow/.env
     volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
+      - ./dags:/opt/airflow/dags:rw
+      - ./logs:/opt/airflow/logs:rw
   
   airflow-scheduler:
+    privileged: true
     image: entechlog/airflow:${AIRFLOW_VERSION_TAG}
     container_name: airflow-scheduler
     build:
@@ -196,8 +197,10 @@ services:
     env_file:
       - ./docker/airflow/.env
     volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
+      - ./dags:/opt/airflow/dags:rw
+      - ./logs:/opt/airflow/logs:rw
+      - //var/run/docker.sock:/var/run/docker.sock:rw
+    user: root
  
   airflow-webserver:
     image: apache/airflow:${AIRFLOW_VERSION_TAG}
@@ -213,8 +216,8 @@ services:
     env_file:
       - ./docker/airflow/.env
     volumes:
-       - ./dags:/opt/airflow/dags
-       - ./logs:/opt/airflow/logs
+       - ./dags:/opt/airflow/dags:rw
+       - ./logs:/opt/airflow/logs:rw
     ports:
       - "8080:8080"
 
