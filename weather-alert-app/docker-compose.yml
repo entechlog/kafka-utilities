@@ -225,6 +225,8 @@ services:
     image: entechlog/weather-alert-app
     container_name: weather-alert-app
     build: ./docker/app/
+    env_file:
+      - ./docker/app/.env
     command: 
       - bash 
       - -c 

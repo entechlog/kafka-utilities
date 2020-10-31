@@ -24,12 +24,19 @@ with DAG('weather-alert-source-data', default_args=default_args, schedule_interv
         
         t2 = DockerOperator(
                 task_id='docker_command',
-                image='centos:latest',
+                image='entechlog/weather-alert-app:latest',
                 api_version='auto',
                 auto_remove=True,
-                command="/bin/sleep 30",
                 docker_url="unix://var/run/docker.sock",
-                network_mode="bridge"
+                network_mode="bridge",
+                environment={
+                        'bootstrap_servers': "broker:39092",
+                        'schema_registry_url': "http://schema-registry:8081",
+                        'topic_name': "weather.alert.app.source",
+                        'lat': "8.28",
+                        'lon': "77.18",
+                        'OPEN_WEATHER_API_KEY': ""
+                        }
         )
         
         t3 = BashOperator(
