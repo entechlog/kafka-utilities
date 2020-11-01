@@ -28,9 +28,9 @@ with DAG('weather-alert-source-data', default_args=default_args, schedule_interv
                 api_version='auto',
                 auto_remove=True,
                 docker_url="unix://var/run/docker.sock",
-                network_mode="bridge",
+                network_mode="weather-alert-app_default",
                 environment={
-                        'bootstrap_servers': "broker:39092",
+                        'bootstrap_servers': "broker:9092",
                         'schema_registry_url': "http://schema-registry:8081",
                         'topic_name': "weather.alert.app.source",
                         'lat': "8.28",

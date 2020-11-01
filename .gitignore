@@ -1,2 +1,3 @@
 weather-alert-app/dags/__pycache__
 weather-alert-app/logs
+weather-alert-app/docker/app/.env

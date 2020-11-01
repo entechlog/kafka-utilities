@@ -227,11 +227,11 @@ services:
     build: ./docker/app/
     env_file:
       - ./docker/app/.env
-    command: 
-      - bash 
-      - -c 
-      - |
-        echo "Launching weather-alert-app"
-        #
-        sleep infinity
+#    command: 
+#      - bash 
+#      - -c 
+#      - |
+#        echo "Launching weather-alert-app"
+#        #
+#        sleep infinity
         

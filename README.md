@@ -10,6 +10,8 @@ https://github.com/confluentinc/demo-scene/tree/master/rail-data-streaming-pipel
 
 https://github.com/confluentinc/demo-scene/tree/master/ksqldb-twitter
 
+https://github.com/fbascheper/kafka-tf-burglar-alerts-demo
+
 ```
 docker build --tag entechlog/weather-alert-app .
 
@@ -67,3 +69,15 @@ docker-compose down --volumes
 
 docker-compose up --remove-orphans -d --build
 
+
+ERROR: error while removing network: network weather-alert-app_default id 1c0d12eac307d89c85cd924dfceeb28cbba4955ee5ede59076d5eda8cf1ccaec has active endpoints
+
+docker network inspect {network}
+docker network inspect weather-alert-app_default
+
+docker network disconnect -f {network} {endpoint-name}
+docker network disconnect -f weather-alert-app_default ffd95c0068e1e82b13f66fe578f93990b19c5fd757ed8201652b2f14a3d85377
+
+docker ps -a
+docker ps -qa
+docker stop $(docker ps -q)
