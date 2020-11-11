@@ -36,7 +36,7 @@ with DAG('docker_dag', default_args=default_args, schedule_interval='@hourly', c
 #                        'TOPIC_NAME': "weather.alert.app.source",
 #                        'LAT': "8.28",
 #                        'LON': "77.18",
-#                        'OPEN_WEATHER_API_KEY': "5d5191cb678be20de15c2f35dafdd756",
+#                        'OPEN_WEATHER_API_KEY': "",
 #                        'network_mode': "bridge"
 #                },
 #                volumes=['/var/run/docker.sock:/var/run/docker.sock'],

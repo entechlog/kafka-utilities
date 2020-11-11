@@ -81,3 +81,8 @@ docker network disconnect -f weather-alert-app_default ffd95c0068e1e82b13f66fe57
 docker ps -a
 docker ps -qa
 docker stop $(docker ps -q)
+
+==
+
+"trace":"java.lang.NoSuchMethodError: 'scala.collection.mutable.WrappedArray scala.Predef$.wrapRefArray(java.lang.Object[]
+
