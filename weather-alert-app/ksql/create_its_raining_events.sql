@@ -4,7 +4,9 @@ SET 'auto.offset.reset' = 'earliest';
 CREATE TABLE TBL_WEATHER_ALERT_APP_0010_RAW (ROWKEY INT PRIMARY KEY)
 	WITH (
 			KAFKA_TOPIC = 'weather.alert.app.source',
-			VALUE_FORMAT = 'AVRO'
+			VALUE_FORMAT = 'AVRO',
+			PARTITIONS = 1,
+			REPLICAS = 1
 			);
 
 -- Filter rainy days 
