@@ -1,7 +1,0 @@
-apache-airflow[crypto]
-#docker-py
-docker
-psycopg2-binary
-
-
-
