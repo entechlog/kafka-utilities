@@ -35,10 +35,4 @@ Execute the script by running the command `./count-messages.sh localhost:9094 /i
 Script execution will generate html and csv report in `reports` sub directory. Here is how an report would look like.
 
 ![image info](./img/sample-report.JPG)
-
-## Examples
-- Count messages in cbt2 topics
-  ```bash
-  ./count-messages.sh b-1.ea-kafka-tglog-test.9zc2ia.c3.kafka.eu-west-1.amazonaws.com:9094,b-2.ea-kafka-tglog-test.9zc2ia.c3.kafka.eu-west-1.amazonaws.com:9094 /home/ubuntu/kafka-utilities/count-messages/input/topic-list/apex-mobile-cbt2.txt
-  ```
   
