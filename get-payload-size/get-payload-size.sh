@@ -1,15 +1,15 @@
 #!/bin/bash
 #######################################################################################################
-#  Script Name       : count-messages.sh                                                              #
+#  Script Name       : get-payload-size.sh                                                            #
 #  created by        : Siva Nadesan                                                                   #
 #  created date      : 2021-04-09                                                                     #
-#  Syntax            : ./count-messages.sh <BOOTSTRAP_SERVERS> <FILE_NAME>                            #
+#  Syntax            : ./get-payload-size.sh <BOOTSTRAP_SERVERS> <FILE_NAME>                          #
 #                    : BOOTSTRAP_SERVERS - KSQL host and port number in host:port format              #
 #                    : FILE_NAME - Full path of file with list of table\stream to be deleted          #
 #  Input file format : <TOPIC_NAME>,<INCLUDE_FLAG>                                                    #
 #                    : TOPIC_NAME - Topic name                                                        #
 #                    : INCLUDE_FLAG - Flag(Yes/No) to count OR exclude a topic                        #
-#  Example           : ./count-messages.sh localhost:9094 /input/demo.txt                             #
+#  Example           : ./get-payload-size.sh localhost:9094 /input/demo.txt                           #
 #######################################################################################################
 
 #######################################################################################################
@@ -72,6 +72,10 @@ echo "INFO-BOOTSTRAP_SERVERS :" $BOOTSTRAP_SERVERS
 FILE_NAME=$2
 #FILE_NAME=$(echo $FILE_NAME | tr '[:upper:]' '[:lower:]')
 echo "INFO-FILE_NAME         :" $FILE_NAME
+
+SSL_FLAG=$3
+SSL_FLAG=$(echo $SSL_FLAG | tr '[:upper:]' '[:lower:]')
+echo "INFO-SSL_FLAG          :" $SSL_FLAG
 
 #######################################################################################################
 # Location of log files and any supporting files                                                      #
@@ -166,7 +170,11 @@ while read topic_names; do
       echo "INFO-include_flag         :" $include_flag >>$LOGFILE
 
       if [[ $include_flag = 'y' ]] || [[ $include_flag = 'yes' ]] || [[ -z $include_flag ]]; then
-         count_command=$(echo "kafkacat -C -b $BOOTSTRAP_SERVERS -t $topic_name -X security.protocol=SSL -o beginning -e -q | wc -l")
+         if [[ $SSL_FLAG = 'y' ]] || [[ $SSL_FLAG = 'yes' ]]; then
+            count_command=$(echo "kafkacat -C -b $BOOTSTRAP_SERVERS -t $topic_name -X security.protocol=SSL -o beginning -c 1 -e -f 'Topic: %t, offset: %o, payload: %S bytes \n' | grep payload")
+         else
+            count_command=$(echo "kafkacat -C -b $BOOTSTRAP_SERVERS -t $topic_name -o beginning -c 1 -e -f 'Topic: %t, offset: %o, payload: %S bytes \n' | grep payload")
+         fi
 
          echo "Issuing Command           : " $count_command >>$LOGFILE
          count_command_output=$(eval $count_command)

@@ -1,0 +1,4 @@
+pageviews,yes
+product,yes
+stock-trades,yes
+users,yes
